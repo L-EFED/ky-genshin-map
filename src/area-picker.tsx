@@ -1,167 +1,154 @@
-import {
-  ArrowDownTrayIcon,
-  DocumentPlusIcon,
-} from "@heroicons/react/24/outline";
+// 从 @canvaskit-map/react 中引入 DomLayer 和 MarkerLayer，用于渲染地图上的标记图层
+// Import DomLayer and MarkerLayer for rendering markers on the map
+import { DomLayer, MarkerLayer } from "@canvaskit-map/react";
+
+// 引入 classNames 用于动态组合 class 名
+// Import classNames for conditional CSS class combination
 import classNames from "classnames";
-import { proxy, useSnapshot } from "valtio";
-import { exportData, importData } from "./genshin-map/state";
-import { activateArea, store } from "./store";
 
-interface AreaConfig {
-  icon: string;
-  color: string;
-}
+// 引入 useState 用于控制加载状态
+// Import useState for managing local loading state
+import { useState } from "react";
 
-const areas: Record<string, AreaConfig> = {
-  蒙德: { icon: require("../images/mondstadt.png"), color: "#60fff5" },
-  璃月: { icon: require("../images/liyue.png"), color: "#ffdc60" },
-  稻妻: { icon: require("../images/inazuma.png"), color: "#9360ff" },
-  须弥: { icon: require("../images/sumeru.png"), color: "#afff60" },
-  枫丹: { icon: require("../images/fontaine.png"), color: "#52e5ff" },
-  纳塔: { icon: require("../images/natlan.png"), color: "#fa4a4a" },
-};
+// 引入 valtio 快照 hook 获取响应式状态
+// Import useSnapshot from valtio to get reactive state snapshot
+import { useSnapshot } from "valtio";
 
-const state = proxy({ visible: false });
+// 引入 zIndex 配置
+// Import zIndex config for layering
+import { zIndex } from ".";
 
-function toggleAreaPicker() {
-  state.visible = !state.visible;
-}
+// 引入标记点排除名称和锚点配置
+// Import special area names and anchor position
+import { borderlessNames, bottomCenterAnchor } from "./area-item-layer";
 
-export function closeAreaPicker() {
-  state.visible = false;
-}
+// 引入相关状态和操作函数
+// Import area marker data structure and state management functions
+import { AreaItemMarker, mark, state, unmark } from "./state";
 
-export function AreaPicker() {
-  const { activeTopArea, activeSubArea, mapData } = useSnapshot(store);
-  const { visible } = useSnapshot(state);
+export function ActiveMarkerLayer() {
+  // 通过 valtio 获取当前激活的标记点
+  // Get the current active marker from global state
+  const { activeMarker } = useSnapshot(state);
 
-  if (activeTopArea == null) {
-    return null;
-  }
+  // 控制图片是否加载完成
+  // Control whether the marker image is loaded
+  const [loading, setLoading] = useState(true);
 
-  const iconClassName = "w-8 h-8 text-white";
+  // 定义图片元素，用于渲染图标
+  // Define the image element for the marker
+  const image = (
+    <img
+      class="w-4 block"
+      src={require("../../images/active-marker.png")}
+      onLoad={() => setLoading(false)} // 图片加载完成后设置 loading 为 false // Set loading to false once image loads
+    />
+  );
+
   return (
     <>
-      <div
-        className={classNames(
-          "absolute pointer-events-none w-full h-16 md:h-20 bg-gradient-to-b from-black/50 to-transparent"
-        )}
-      />
-      <div
-        className={classNames(
-          "absolute h-16 md:h-20 flex items-center gap-4 ease-out duration-300",
-          visible ? "opacity-0 -left-20" : "opacity-100 left-4"
-        )}
-      >
-        <DocumentPlusIcon
-          className={iconClassName}
-          title="导入存档"
-          onClick={importData}
-        />
-        <ArrowDownTrayIcon
-          className={iconClassName}
-          title="导出存档"
-          onClick={exportData}
-        />
-      </div>
-      <div
-        className={classNames(
-          "absolute h-16 md:h-20 flex items-center ease-out duration-300",
-          visible ? "opacity-0 -right-20" : "opacity-100 right-4"
-        )}
-        onClick={toggleAreaPicker}
-      >
-        <div className="flex-1 flex flex-col pt-1 mr-4 items-end justify-center">
-          <div className="text-white flex items-center">
-            <div className="rounded-full px-2 h-6 bg-black/50 mr-2 flex items-center">
-              <img
-                className="w-5 md:h-5 mr-1"
-                src={require("../images/icon-compass.png")}
-              />
-              <div className="leading-none text-sm">更换地区</div>
-            </div>
-            <div className="text-xl md:text-2xl font-semibold">
-              {activeTopArea.getName()}
-            </div>
-          </div>
-          <div
-            className="text-yellow-400 font-bold text-sm md:text-base"
-            style={{ textShadow: "0 0 2px #000" }}
-          >
-            当前选择 -{" "}
-            {activeSubArea
-              ? activeSubArea.getName()
-              : `${activeTopArea.getName()}全地区`}
-          </div>
-        </div>
-        <img
-          className="w-12 h-12 md:w-16 md:h-16"
-          src={areas[activeTopArea.getName()].icon}
-        />
-      </div>
-      <div
-        className={classNames(
-          "absolute w-full h-16 md:h-20 flex items-center justify-center ease-out duration-300",
-          visible ? "top-0 opacity-100" : "-top-20 md:-top-16 opacity-0"
-        )}
-        style={{
-          background:
-            "linear-gradient(90deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.5) 50%,rgba(0,0,0,0) 100%)",
-        }}
-      >
-        {mapData.getAreaList().map((topArea) => {
-          return (
-            <div
-              key={topArea.getName()}
-              className="mx-2 relative w-11 h-11 md:w-14 md:h-14 flex justify-center items-center"
-              onClick={() => {
-                activateArea(topArea);
-              }}
-            >
-              <>
-                <img
-                  className="w-full h-full absolute top-0 left-0 ease-out duration-300"
-                  src={areas[topArea.getName()].icon}
-                />
-                <div
-                  className={classNames(
-                    "absolute w-1/2 h-1/2 bg-white hover:opacity-100 duration-300 ease-out",
-                    activeTopArea == topArea ? "opacity-100" : "opacity-0"
-                  )}
-                  style={{
-                    filter: "blur(10px)",
-                    backgroundColor: areas[topArea.getName()].color,
-                  }}
-                />
-              </>
-            </div>
-          );
-        })}
-        {visible && (
-          <div
-            className={classNames(
-              "absolute top-16 md:top-20 px-8 py-2 flex flex-wrap gap-2 justify-center"
-            )}
-          >
-            {activeTopArea.getChildList().map((subArea) => (
-              <div
-                key={subArea.getName()}
-                className={classNames(
-                  "py-0.5 px-4 rounded-full bg-black/50 text-white font-semibold text-sm border-1 border-solid hover:border-white ease-out duration-300",
-                  activeSubArea == subArea
-                    ? "border-white"
-                    : "border-transparent"
-                )}
-                onClick={() => {
-                  activateArea(subArea);
-                }}
-              >
-                {subArea.getName()}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
+      {/* 隐藏的图片用于预加载，避免 MarkerLayer 加载时图像闪烁 */}
+      {/* Hidden image for preloading to prevent flicker */}
+      <div className="hidden">{image}</div>
+
+      {/* 如果图片加载完成，渲染 MarkerLayer 显示标记点 */}
+      {/* Render MarkerLayer only after image is loaded */}
+      {!loading && (
+        <MarkerLayer
+          items={activeMarker ? [activeMarker] : []}
+          anchor={bottomCenterAnchor}
+          zIndex={zIndex.activeMarker}
+        >
+          {image}
+        </MarkerLayer>
+      )}
+
+      {/* 如果有激活的标记，显示信息弹窗 */}
+      {/* If a marker is active, show its info window */}
+      {activeMarker && (
+        <>
+          <MarkerInfo {...activeMarker} />
+        </>
+      )}
     </>
+  );
+}
+
+// MarkerInfo 组件用于显示点击 marker 后弹出的详细信息窗口
+// MarkerInfo component shows the detailed popup info for a marker
+function MarkerInfo({ marker, areaItem, x, y }: AreaItemMarker) {
+  // 触发刷新时间的获取（可能包含副作用）
+  // Trigger potential side effects by accessing refresh time
+  areaItem.getRefreshTime();
+
+  // 获取标记状态列表（记录哪些 marker 被“已完成”标记）
+  // Get the set of marked marker IDs
+  const { marked } = useSnapshot(state);
+
+  let markButton = null;
+
+  // 如果该区域不在“无标记”名单且刷新时间为 0，则显示标记按钮
+  // Show mark buttons only for specific markers
+  if (
+    !borderlessNames.includes(areaItem.getName()) &&
+    areaItem.getRefreshTime() == 0
+  ) {
+    const buttonClass =
+      "flex-1 h-full box-border rounded-full text-center border border-solid flex justify-center items-center";
+
+    // 定义两个按钮：“未完成”和“已完成”，并根据当前标记状态切换样式
+    // Define the "Incomplete" and "Complete" buttons with conditional styles
+    markButton = (
+      <div className="h-5 p-0.5 mt-1 rounded-full border border-yellow-900/50 border-solid flex items-center text-xs">
+        {/* 未完成按钮 */}
+        <div
+          className={classNames(
+            buttonClass,
+            marked.has(marker.getId())
+              ? "border-transparent" // 如果已标记，不高亮
+              : "bg-yellow-900/40 border-yellow-900/60 text-white" // 高亮显示
+          )}
+          onClick={() => unmark(marker)}
+        >
+          未完成
+        </div>
+        {/* 已完成按钮 */}
+        <div
+          className={classNames(
+            buttonClass,
+            marked.has(marker.getId())
+              ? "bg-cyan-600/90 border-cyan-900/80 text-white" // 高亮“已完成”状态
+              : "border-transparent"
+          )}
+          onClick={() => mark(marker)}
+        >
+          已完成
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    // 使用 DomLayer 将弹窗定位到地图上的对应位置
+    // Use DomLayer to position the popup on the map
+    <DomLayer
+      x={x}
+      y={y}
+      className="relative top-[calc(-100%-2.5rem)] -left-1/2 w-64 text-sm"
+    >
+      {/* 弹窗主体内容 */}
+      <div className="bg-orange-50 shadow-lg rounded-lg flex flex-col gap-2 p-3 marker relative">
+        {/* 标题 */}
+        <div className="text-gray-900">{marker.getTitle()}</div>
+        {/* 内容文本 */}
+        <div className="text-gray-500 text-xs">{marker.getContent()}</div>
+        {/* 图片（如果有） */}
+        {marker.getPicture() && (
+          <img className="w-full rounded" src={marker.getPicture()} />
+        )}
+        {/* 标记按钮 */}
+        {markButton}
+      </div>
+    </DomLayer>
   );
 }

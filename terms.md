@@ -166,3 +166,7 @@ flex justify-center items-center	Flex 布局，水平/垂直居中
 | `box-border`                                   | Tailwind CSS 类，表示使用边框盒模型                      | 用于确保内边距和边框包含在元素的宽度内                    |
 | `mx-auto`                                      | Tailwind CSS 类，表示水平居中                         | 用于将装饰性横条水平居中对齐                         |
 | `bg-[url(...)]`                                | Tailwind CSS 类，表示背景图片                         | 用于设置侧边栏内容区域的背景图片                       |
+
+
+
+

@@ -103,3 +103,98 @@ This code defines a React component called `Settings`, which creates a settings 
 ### 4. **shadow-layer.ts**
 This code defines a custom shadow layer and encapsulates it as a React component (`ShadowLayer`).
 - **Gradient Shadow Effect**: Used to draw a gradient shadow effect on the map.
+
+
+覃旗广
+Here is the English translation of your explanation:
+
+---
+
+### Explanation of `state.ts` to `underground-layer.tsx`
+
+#### **`state.ts`**  
+This code implements the core state management and interaction functionality for an interactive map application. Its main purposes are:  
+
+1. **Global State Management**  
+   *Purpose*: Uses Valtio to create reactive global states, managing map instances, view states, and user data.  
+
+2. **Map Event Handling**  
+   *Purpose*: Processes map load events and click interactions, maintaining map instances and interaction states.  
+
+3. **Marker Management System**  
+   *Purpose*: Implements marker bookmarking/unbookmarking with `localStorage` for persistent user data storage.  
+
+4. **Data Import/Export**  
+   *Purpose*: Provides JSON export/import functionality for user marker data.  
+
+5. **Underground Map Linkage**  
+   *Purpose*: Automatically switches to the corresponding underground map when clicking a marker with underground layer data.  
+
+6. **View Controls**  
+   *Purpose*: Controls the visibility of underground layers, teleport points, and other map elements.  
+
+---
+
+#### **`underground-layer.tsx` & Related Components**  
+These two files together form the core visualization components of a game map system, implementing the following features:  
+
+1. **Multi-Layered Map Rendering System**  
+   - `TeleportLayer`: Handles surface teleport points (including special "Statue of The Seven" markers).  
+   - `UndergroundLayer`: Manages hierarchical structures of underground maps.  
+   - Seamless switching between surface and underground maps (via `undergroundEnabled` state).  
+
+2. **Smart Display Control**  
+   - Progressive loading based on zoom level (`zoomLevel`):  
+     - Statues of The Seven hide when `zoom < -4`.  
+     - Regular teleport points hide when `zoom < -2`.  
+     - Underground map labels hide when `zoom < -2` and inactive.  
+   - Visual emphasis mechanisms:  
+     - Currently selected underground maps (`current`) are highlighted (`zIndex + 1`).  
+     - Inactive underground layers are semi-transparent (`opacity: 0.3`).  
+
+3. **Interactive Map Marker System**  
+   - Categorizes different teleport types (Statues of The Seven vs. regular teleporters).  
+   - Click interactions for underground map labels (switching active layers).  
+   - Dynamic state management (via Valtio’s `useSnapshot` for reactivity).  
+
+4. **Performance Optimization**  
+   - Uses `useMemo` to cache map chunks and label rendering.  
+   - On-demand rendering (controlled by `teleportVisible`).  
+   - Virtual DOM layer management (via `DomLayer`).  
+
+5. **Visual Hierarchy Management**  
+   - Precise `zIndex` control (base layer: `zIndex.underground`).  
+   - `MaskLayer` for smooth transitions during map switching.  
+   - Responsive styling (dynamic CSS classes via `classNames`).  
+
+---
+
+### **Typical Workflow**  
+1. When the user zooms, the system automatically adjusts visible content.  
+2. Clicking a teleport activates the linked underground map (via `activateMarker`).  
+3. Underground maps display hierarchical labels, clickable for layer switching.  
+4. The system automatically handles:  
+   - Visibility based on zoom level.  
+   - Highlighting of active layers.  
+   - Visual de-emphasis of inactive layers.  
+
+---
+
+### **Technical Architecture**  
+```mermaid
+graph TD
+    A[State Management] --> B[TeleportLayer]
+    A --> C[UndergroundLayer]
+    B --> D[AreaItemLayer]
+    C --> E[UndergroundMapItem]
+    E --> F[ImageLayer]
+    E --> G[DomLayer]
+    F --> H[Dynamic zIndex Control]
+    G --> I[Interactive Label System]
+```
+
+These components collectively build a **professional-grade game map system** optimized for performance and user experience, particularly suited for complex spatial data visualization in open-world games.  
+
+--- 
+
+Let me know if you'd like any refinements!

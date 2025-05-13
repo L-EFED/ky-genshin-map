@@ -95,13 +95,8 @@ function DefaultMarkerLayer({
   ...props
 }: MarkerLayerProps) {
   const { undergroundEnabled } = useSnapshot(state);
-  if (undergroundEnabled && !underground) {
-    props.hidden = true;
-  }
-  return (
-    <MarkerLayer
-      {...props}
-      className="p-1"
+     const hidden = undergroundEnabled && !underground;
+     return <MarkerLayer {...props} hidden={hidden}className="p-1"
       anchor={bottomCenterAnchor}
       zIndex={zIndex.marker}
     >
@@ -127,9 +122,7 @@ function DefaultMarkerLayer({
           className="absolute w-4 h-4 bottom-0 right-0"
           src={require("../../images/icon-underground-active.png")}
         />
-      )}
-    </MarkerLayer>
-  );
+      )} />;
 }
 
 function BorderlessMarkerLayer({

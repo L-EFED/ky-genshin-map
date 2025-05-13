@@ -1,35 +1,66 @@
-# 空荧酒馆原神地图
+Kongying Tavern Genshin Map
+A super-smooth interactive map for Genshin Impact. Data source: Kongying Tavern.
 
-超级丝滑的原神地图，数据来源：[空荧酒馆](https://yuanshen.site/docs/)。
+Online Demos:
 
-在线链接：
+https://qiuxiang.github.io/ky-genshin-map/ (GitHub Pages)
 
-- https://qiuxiang.github.io/ky-genshin-map/ (github pages)
-- https://ky-genshin-map-1253179036.cos-website.ap-nanjing.myqcloud.com (腾讯云 COS)
+https://ky-genshin-map-1253179036.cos-website.ap-nanjing.myqcloud.com (Tencent Cloud COS)
 
-![图片](https://github.com/qiuxiang/ky-genshin-map/assets/1709072/2ea4b8e7-1978-4b95-a353-cc712a01b21e)
 
-### 移动端适配
 
-在手机浏览器也能保证流畅体验。
+📱 Mobile Compatibility
+Fully responsive and smooth experience on mobile browsers as well.
 
-https://github.com/qiuxiang/ky-genshin-map/assets/1709072/193c2ed9-2cce-44d5-9fbe-5979c6a9a0f1
 
-## 构建
 
-```bash
-# 初始化
+🔧 Build Instructions
+bash
+复制
+编辑
+# Initialize
 pnpm run init
 
-# 开发
+# Start development server
 pnpm run dev
 
-# 编译
+# Build for production
 pnpm run build
-```
+✅ TODO List
+ Highlight markers on the same layer (same floor) like in Genshin's official layered map
 
-## TODO
+ Improve display of region and subregion names
 
-- [x] 和原神内置的分层地图一样，对同层的点位特别标记
-- [ ] 完善各地区/子地区地名显示
-- [x] 存档数据导入/导出
+ Support import/export of save data
+
+👨‍💻 Task for Junhao Chen
+Perform bug analysis and English comment translation for the following components:
+
+1. ActiveMarkerLayer (Active Marker Layer)
+Purpose: Displays the currently selected marker and its detailed information.
+
+Load and render the designated marker icon (active-marker.png)
+
+Show marker title, content, images, etc.
+
+Support toggling "Incomplete / Completed" status (using Valtio for state management)
+
+2. AreaItemLayer (Area Item Layer)
+Purpose: Displays all resource points or special locations on the map.
+
+Requirements:
+
+Render markers by region type and whether they are aboveground/underground
+
+Use MarkerLayer to show points, with support for icons and underground tags
+
+Optionally exclude the currently active marker and completed markers
+
+3. AreaNamesLayer (Area Name Layer)
+Purpose: Displays major/subregion names on the map in Chinese.
+
+Dynamically show/hide different name layers based on map zoom level
+
+Use TextLayer with a custom font to render Chinese text
+
+Support management of main and subregion name lists

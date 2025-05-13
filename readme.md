@@ -33,7 +33,9 @@ pnpm run build
 
  Support import/export of save data
 
-👨‍💻 Task for Junhao Chen
+
+
+陈俊豪
 Perform bug analysis and English comment translation for the following components:
 
 1. ActiveMarkerLayer (Active Marker Layer)
@@ -68,3 +70,36 @@ Support management of main and subregion name lists
 
 宋治钱
 I have been working on the first three parts of [components] and [drawer]. In [components], it implements a graphical toggle switch, which is commonly used to switch between two states, such as turning on or off a certain feature. The functionality of [drawer][area-item-types.tsx] is that they are used to render and manage a list of area item types. These components are typically used to build user interfaces where users can view and select different types of area items. [area-items.tsx] allows users to activate or deactivate an entire group of area items by clicking. It provides visual feedback, indicating the activation status of the area items through changes in background and text color. It displays the name and quantity of the area items to help users identify and manage different area items. [index.tsx] provides a collapsible sidebar that users can control the display status of by clicking a toggle button. The sidebar can contain various content, such as a list of area item types, from which users can make selections and perform operations.
+
+
+覃冰凌
+### 1. **index.ts**
+This code implements a visualization component for the _Genshin Impact_ game map, using CanvasKit for efficient map rendering.
+- **Map Container**: Uses `CanvaskitMap` as the map container.
+- **Tile Loading**: Loads and displays map tiles using `TileLayer`.
+- **Interaction**: Supports panning and zooming interactions.
+- **Layered Rendering System**: 
+  - **Architecture**: Uses a layered architecture where different elements are placed on different layers.
+  - **Order Control**: Controls the display order of layers using `zIndex`.
+- **Dynamic Content Management**:
+  - **Data and Configuration**: Retrieves map data and settings from the global state `store`.
+  - **Dynamic Rendering**: Dynamically renders active area items.
+
+### 2. **mask-layer.ts**
+This code implements a black semi-transparent mask layer, primarily used to create a visual mask effect on the map.
+- **Mask Effect Implementation**: Creates a black semi-transparent rectangle that covers the entire map area.
+- **Layer Management**:
+  - **Inheritance**: Inherits from the base `Layer` class.
+  - **Z-index Setting**: Sets the `zIndex` to `underground` to ensure it is displayed above the base map but below other content layers.
+
+### 3. **settings.tsx**
+This code defines a React component called `Settings`, which creates a settings panel that allows users to control the visibility of certain features using switches.
+- **Settings Panel**:
+  - **Layered Map**: Controls whether the layered map feature is enabled.
+  - **Teleport Points**: Controls the visibility of teleport points.
+  - **Markers**: Controls the visibility of marked content.
+- **Usage**: This component is likely used in a map application or similar application to allow users to customize the content displayed on the map.
+
+### 4. **shadow-layer.ts**
+This code defines a custom shadow layer and encapsulates it as a React component (`ShadowLayer`).
+- **Gradient Shadow Effect**: Used to draw a gradient shadow effect on the map.

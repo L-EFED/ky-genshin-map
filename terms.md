@@ -170,3 +170,70 @@ flex justify-center items-center	Flex 布局，水平/垂直居中
 
 
 
+覃冰棱
+
+1. CanvasKit
+定义: 基于Skia的高性能2D渲染库，用于高效的图形渲染。
+Definition: A high-performance 2D rendering library based on Skia, used for efficient graphics rendering.
+用途: 用于处理地图及其图层的渲染。
+Usage: Used to handle the rendering of the map and its layers.
+2. Layer
+定义: 表示地图上一个图层的类，负责在地图上绘制特定元素。
+Definition: A class representing a layer in the map, responsible for drawing specific elements on the map.
+用途: 作为自定义图层（如_MaskLayer）的基类。
+Usage: Used as the base class for custom layers like _MaskLayer.
+3. CustomLayer
+定义: 一个React组件包装器，用于自定义地图图层，使其能够集成到地图中。
+Definition: A React component wrapper for custom map layers, enabling the integration of custom layers into the map.
+用途: 用于包装_MaskLayer类，使其能够作为React组件使用。
+Usage: Used to wrap the _MaskLayer class to make it usable as a React component.
+4. Canvas
+定义: CanvasKit提供的2D绘图上下文，用于绘制形状、文本和其他图形元素。
+Definition: A 2D drawing context provided by CanvasKit, used for drawing shapes, text, and other graphical elements.
+用途: 在_MaskLayer的draw方法中用于绘制半透明黑色矩形。
+Usage: Used in the draw method of _MaskLayer to draw the semi-transparent black rectangle.
+5. Paint
+定义: 用于定义绘图操作样式的对象，例如颜色、笔画宽度和填充样式。
+Definition: An object used to define the style of drawing operations, such as color, stroke width, and fill style.
+用途: 在_MaskLayer中用于设置半透明黑色矩形的颜色和样式。
+Usage: Used in _MaskLayer to set the color and style of the semi-transparent black rectangle.
+6. zIndex
+定义: 决定地图上图层堆叠顺序的属性。
+Definition: A property that determines the stacking order of layers on the map.
+用途: 用于设置_MaskLayer的堆叠顺序，确保它被渲染在其他图层下方。
+Usage: Used to set the stacking order of the _MaskLayer to ensure it is rendered below other layers.
+7. _MaskLayer
+定义: 一个继承自Layer的自定义图层类，负责在地图上绘制半透明黑色矩形。
+Definition: A custom layer class that extends Layer and is responsible for drawing a semi-transparent black rectangle over the entire map.
+用途: 实现了init和draw方法，用于创建和渲染遮罩。
+Usage: Implements the init and draw methods to create and render the mask.
+8. CustomLayer
+定义: 一个React组件，包装自定义图层类，使其能够在React应用中使用。
+Definition: A React component that wraps a custom layer class, allowing it to be used within a React application.
+用途: 包装_MaskLayer类，将其集成到地图组件中。
+Usage: Wraps the _MaskLayer class to integrate it into the map component.
+9. React Component
+定义: React应用中一个可复用的代码片段，封装了UI元素及其行为。
+Definition: A reusable piece of code in a React application that encapsulates UI elements and their behavior.
+用途: 用于创建MaskLayer组件，将_MaskLayer集成到地图中。
+Usage: Used to create the MaskLayer component, which integrates the _MaskLayer into the map.
+10. map!.rect
+定义: 表示地图的边界矩形的属性。
+Definition: A property representing the bounding rectangle of the map.
+用途: 在_MaskLayer的draw方法中用于确定要覆盖的区域。
+Usage: Used in the draw method of _MaskLayer to determine the area to be covered by the semi-transparent black rectangle.
+11. this.canvaskit!.Paint()
+定义: 创建一个新的Paint对象的方法。
+Definition: A method to create a new Paint object.
+用途: 在_MaskLayer的init方法中用于创建Paint对象，用于绘制遮罩。
+Usage: Used in the init method of _MaskLayer to create a Paint object for drawing the mask.
+12. this.canvaskit!.Color(0, 0, 0, 0.7)
+定义: 创建一个具有RGBA值的颜色的方法。
+Definition: A method to create a color with RGBA values.
+用途: 在_MaskLayer的init方法中用于设置Paint对象的颜色为半透明黑色。
+Usage: Used in the init method of _MaskLayer to set the color of the Paint object to a semi-transparent black.
+13. canvas.drawRect(this.map!.rect, this._paint!)
+定义: 在画布上绘制矩形的方法。
+Definition: A method to draw a rectangle on the canvas.
+用途: 在_MaskLayer的draw方法中用于在地图上绘制半透明黑色矩形。
+Usage: Used in the draw method of _MaskLayer to draw the semi-transparent black rectangle over the entire map.

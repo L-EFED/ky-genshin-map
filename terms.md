@@ -237,3 +237,84 @@ Usage: Used in the init method of _MaskLayer to set the color of the Paint objec
 Definition: A method to draw a rectangle on the canvas.
 用途: 在_MaskLayer的draw方法中用于在地图上绘制半透明黑色矩形。
 Usage: Used in the draw method of _MaskLayer to draw the semi-transparent black rectangle over the entire map.
+
+覃旗广
+以下是针对这三段代码提取的专业术语词汇表（中英对照）：
+
+---
+
+### **核心框架术语 / Core Framework Terms**
+| 英文 | 中文 | 应用场景 |
+|------|------|----------|
+| Valtio | 响应式状态库 | 全局状态管理 |
+| useSnapshot | 状态快照 | 组件级状态订阅 |
+| proxy | 代理对象 | 创建响应式状态 |
+| proxySet | 代理集合 | 标记数据集合管理 |
+| CanvaskitMap | 地图渲染引擎 | 底层地图渲染 |
+
+---
+
+### **地图功能术语 / Map Feature Terms**
+| 英文 | 中文 | 代码示例 |
+|------|------|----------|
+| TeleportLayer | 传送点图层 | `allTeleports` 分类渲染 |
+| UndergroundLayer | 地下城图层 | `undergroundMap.getChildList()` |
+| Statue of The Seven | 七天神像 | `i.getName() == "七天神像"` |
+| Chunk | 地图区块 | `chunk.getBoundList()` |
+| MaskLayer | 遮罩图层 | 地图切换过渡效果 |
+| DomLayer | DOM元素层 | 交互式标签容器 |
+| ImageLayer | 图片图层 | 地下城区块渲染 |
+
+---
+
+### **状态管理术语 / State Management Terms**
+| 英文 | 中文 | 关键字段 |
+|------|------|----------|
+| zoomLevel | 缩放等级 | 控制元素显隐 |
+| undergroundEnabled | 地下模式开关 | 全局分层地图控制 |
+| activeUndergroundMap | 激活的地下地图 | 点位触发联动 |
+| teleportVisible | 传送点可见性 | `toggleTeleport()` |
+| markedVisible | 标记可见性 | `toggleMarkedVisible()` |
+
+---
+
+### **数据流术语 / Data Flow Terms**
+| 英文 | 中文 | 实现方式 |
+|------|------|----------|
+| Protobuf (data_pb) | 协议缓冲区数据 | `AreaItem/Marker` 结构定义 |
+| getItemMap() | 物品映射表 | 快速查找标记数据 |
+| getBoundList() | 边界坐标列表 | 确定渲染范围 |
+| localStorage | 本地存储 | 标记数据持久化 |
+
+---
+
+### **性能优化术语 / Performance Terms**
+| 英文 | 中文 | 技术实现 |
+|------|------|----------|
+| useMemo | 记忆化计算 | 缓存地图块渲染 |
+| zIndex | 层级索引 | `zIndex.underground` |
+| Lazy Rendering | 惰性渲染 | `hidden={zoomLevel < -2}` |
+| Virtual DOM | 虚拟DOM | `DomLayer` 高效更新 |
+
+---
+
+### **交互设计术语 / Interaction Terms**
+| 英文 | 中文 | 对应代码 |
+|------|------|----------|
+| activateMarker | 激活标记 | 关联地下地图 |
+| toggleUnderground | 切换地下模式 | 全局视图控制 |
+| mark/unmark | 收藏/取消标记 | 用户数据管理 |
+| click handler | 点击事件处理器 | 标签交互逻辑 |
+
+---
+
+### **特殊数值术语 / Special Values**
+| 英文 | 中文 | 含义 |
+|------|------|------|
+| zoomLevel < -4 | 缩放等级阈值 | 七天神像隐藏条件 |
+| zoomLevel < -2 | 缩放等级阈值 | 常规传送点隐藏条件 |
+| opacity: 0.3 | 透明度值 | 非活跃层半透明化 |
+| zIndex.underground + 1 | 层级叠加 | 当前选中层置顶 |
+
+---
+

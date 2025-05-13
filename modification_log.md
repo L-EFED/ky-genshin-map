@@ -1,3 +1,4 @@
+陈俊豪
 将文件active-marker-layer的bug代码:
 <img
       img className="w-4 block"
@@ -78,8 +79,14 @@ return <MarkerLayer {...props} hidden={hidden}       className="p-1"
         />
       )} />;
 
-
-
-
-
 将文件toggle-button里面的英文注释翻译成中文
+
+
+
+
+
+
+
+宋治钱
+用了ai术词汇的理解和学习 还有功能的应用
+我做的是[components]和[drawer]的前三部分 [components] 里面的内容是它实现了一个图形化的切换开关，通常用于在两种状态之间进行切换，比如开启或关闭某个功能 [drawer][area-item-types.tsx]功能是它们用于渲染和管理一个区域项类型的列表。这些组件通常用于构建用户界面，其中用户可以查看和选择不同的区域项类型 [area-items.tsx]允许用户通过点击来激活或取消激活整个分组的区域项。 [index.tsx]提供一个可展开和收起的侧边栏，用户可以通过点击切换按钮来控制其显示状态。 侧边栏内部可以包含各种内容，如区域项类型列表，用户可以在其中进行选择和操作，对这个代码有了深刻的理解。

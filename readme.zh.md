@@ -36,40 +36,33 @@ pnpm run build
 
 
 <!-- by 陈俊豪 --> 
+陈俊豪
 任务：
     对下面功能进行bug排查和英文注释翻译
 
     1. ActiveMarkerLayer（激活标记图层）
     功能：显示用户当前选中的标记点及其详情信息。
-
     加载并展示指定的标记图标（active-marker.png）
-
     显示标记的标题、内容、图片等信息
-
     支持“未完成 / 已完成”状态切换（使用 Valtio 管理状态）
 
     2. AreaItemLayer（区域点图层）
     功能：展示地图上的所有资源点或特殊位置。
 
     要求：
-
     按区域类型和地下/地上分类渲染 marker
-
     使用 MarkerLayer 显示点位，支持图标和地下标识
-
     排除当前激活点与已完成点（可配置）
 
     3. AreaNamesLayer（区域地名图层）
     功能：在地图上显示主要/次级区域的中文地名标签。
-
     根据缩放等级动态显示/隐藏不同层级地名
-
     使用 TextLayer 加载自定义字体渲染中文文本
-
     支持主区域和子区域名称列表的管理
 
 
 <!-- by 宋治钱 --> 
+宋治钱
 
      我做的是[components]和[drawer]的前三部分 [components] 
     里面的内容是它实现了一个图形化的切换开关，通常用于在两种状态之间进行切换，比如开启或关闭某个功能 [drawer][area-item-types.tsx]功能是它们用于渲染和管理一个区域项类型的列表。
@@ -82,6 +75,7 @@ pnpm run build
 
 
 <!-- by 覃冰棱 -->
+覃冰棱
 我做的是index.tse到shadow-layer。tex的解释
 index.这段代码实现了一个《原神》游戏地图的可视化组件，使用 CanvasKit 进行高效渲染地图基础渲染
 使用 CanvaskitMap 作为地图容器
@@ -110,6 +104,7 @@ index.这段代码实现了一个《原神》游戏地图的可视化组件，�
 
 
 <!-- by 覃旗广 -->
+覃旗广
 我做的是state.ts到underground-layer.tsx的解释
 state.ts这段代码实现了一个交互式地图应用的核心状态管理和交互功能，主要作用如下：
 1.全局状态管理。作用：使用valtio创建响应式全局状态，管理地图实例、视图状态和用户数据
@@ -168,6 +163,7 @@ graph TD
 
 
 <!-- by 许家伦 -->
+许家伦
 对area-picker.tsx的解释
 加载并显示标记图标（图片）
 通过 <MarkerLayer> 把当前激活的标记点（activeMarker）渲染在地图上。
@@ -187,6 +183,7 @@ graph TD
 
 
 <!-- by 李鸿宇 -->
+李鸿宇
 负责store.ts与主目录index.html的解释，润色其他人的排版。
 
 一.

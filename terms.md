@@ -343,3 +343,132 @@ React 渲染器	React Renderer	使用 createRoot().render() 将 React 组件渲�
 响应式 UI 控制	UI State Control	点击地图时关闭 UI 组件的交互逻辑。
 
 
+李鸿宇
+
+一.
+1. HTML/DOM 相关
+DOCTYPE
+解释：文档类型声明，指定HTML版本标准（此处为HTML5）。
+
+meta
+解释：元标签，定义页面的元信息（如字符集、视口设置等）。
+
+viewport
+解释：移动端渲染视口配置，width=device-width 表示视口宽度与设备宽度一致。
+
+favicon
+解释：网站图标，显示在浏览器标签页或书签中。
+
+apple-touch-icon
+解释：iOS设备上保存到主屏幕时使用的图标。
+
+select-none
+解释：CSS类（通常来自Tailwind），禁止用户选中文本。
+
+2. CSS/样式相关
+overscroll-behavior
+解释：控制滚动到边界时的行为，none 禁用弹性滚动效果。
+
+::-webkit-scrollbar
+解释：Webkit浏览器滚动条伪元素，display: none 隐藏滚动条。
+
+:root
+解释：CSS伪类，匹配文档根元素（<html>），用于定义全局CSS变量。
+
+var()
+解释：CSS函数，引用自定义属性（如 --un-drop-shadow-color）。
+
+position: absolute/fixed
+解释：定位方式，absolute 相对最近定位祖先，fixed 相对视口。
+
+z-index
+解释：控制元素的堆叠顺序（通过 z-10 类实现）。
+
+3. 脚本与分析工具
+aplus_queue
+解释：阿里云日志服务(Aplus)的全局队列，用于收集用户行为数据。
+
+beacon
+解释：数据采集的信标脚本，通常用于异步发送日志。
+
+appKey
+解释：应用唯一标识符，用于分析工具区分不同项目。
+
+4. 布局与响应式
+w-full / h-full
+解释：Tailwind类，表示宽度/高度占满父容器（width: 100%）。
+
+fixed
+解释：CSS定位，使元素脱离文档流并相对于视口定位。
+
+m-0
+解释：Tailwind类，移除所有外边距（margin: 0）。
+
+5. 其他
+SPA (Single Page Application)
+解释：单页应用，所有内容动态加载，无需页面刷新。
+
+SEO (Search Engine Optimization)
+解释：搜索引擎优化，通过元描述(description)提升搜索结果排名。
+
+二.
+1. General Programming Terms
+proxy
+解释: 代理模式，一种设计模式，为其他对象提供一种代理以控制对这个对象的访问。在状态管理库（如valtio）中，用于创建响应式对象。
+
+ref
+解释: 引用（Reference），通常用于避免对象被深度克隆，保持原始对象的引用。在valtio中，ref 用于标记对象，使其保持响应性而不被代理嵌套。
+
+async/await
+解释: 异步编程语法，async 标记函数为异步，await 等待Promise解析。
+
+Promise
+解释: JavaScript 中表示异步操作的最终完成或失败的对象。
+
+2. Web & Network
+fetch
+解释: 浏览器API，用于发起HTTP请求获取资源。
+
+Uint8Array
+解释: 表示8位无符号整型数组，常用于处理二进制数据。
+
+decompress
+解释: 解压缩，将压缩数据还原为原始格式。
+
+locateFile
+解释: 用于指定WASM文件的加载路径（常见于WebAssembly库配置）。
+
+3. Data & Serialization
+deserializeBinary
+解释: 反序列化二进制数据为结构化对象（Protocol Buffers特性）。
+
+Protocol Buffers (protobuf)
+解释: Google开发的二进制序列化格式，高效存储和传输结构化数据。
+
+Record<string, ...>
+解释: TypeScript类型，表示键为字符串的对象。
+
+4. WebAssembly & Graphics
+CanvasKit
+解释: Google开发的基于WebAssembly的2D图形库，Skia的Web移植。
+
+WASM (WebAssembly)
+解释: 二进制指令格式，允许高性能代码在浏览器中运行。
+
+5. State Management
+proxySet
+解释: Valtio提供的响应式Set数据结构，自动追踪变化。
+
+activate/inactivate
+解释: 状态切换术语，表示启用/禁用某项功能。
+
+6. Functional Programming
+callback
+解释: 回调函数，作为参数传递给其他函数的可执行代码。
+
+7. TypeScript Specific
+as (Type Assertion)
+解释: 类型断言，强制指定变量的类型。
+
+! (Non-null Assertion)
+解释: 告诉TypeScript该值非null/undefined。

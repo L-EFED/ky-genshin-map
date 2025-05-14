@@ -35,6 +35,7 @@ pnpm run build
 
 
 
+<!-- by 陈俊豪 --> 
 陈俊豪
 Perform bug analysis and English comment translation for the following components:
 
@@ -68,11 +69,13 @@ Use TextLayer with a custom font to render Chinese text
 Support management of main and subregion name lists
 
 
+<!-- by 宋治钱 --> 
 宋治钱
 I have been working on the first three parts of [components] and [drawer]. In [components], it implements a graphical toggle switch, which is commonly used to switch between two states, such as turning on or off a certain feature. The functionality of [drawer][area-item-types.tsx] is that they are used to render and manage a list of area item types. These components are typically used to build user interfaces where users can view and select different types of area items. [area-items.tsx] allows users to activate or deactivate an entire group of area items by clicking. It provides visual feedback, indicating the activation status of the area items through changes in background and text color. It displays the name and quantity of the area items to help users identify and manage different area items. [index.tsx] provides a collapsible sidebar that users can control the display status of by clicking a toggle button. The sidebar can contain various content, such as a list of area item types, from which users can make selections and perform operations.
 
 
-覃冰凌
+<!-- by 覃冰棱 -->
+覃冰棱
 ### 1. **index.ts**
 This code implements a visualization component for the _Genshin Impact_ game map, using CanvasKit for efficient map rendering.
 - **Map Container**: Uses `CanvaskitMap` as the map container.
@@ -105,6 +108,7 @@ This code defines a custom shadow layer and encapsulates it as a React component
 - **Gradient Shadow Effect**: Used to draw a gradient shadow effect on the map.
 
 
+<!-- by 覃旗广 -->
 覃旗广
 Here is the English translation of your explanation:
 
@@ -201,6 +205,7 @@ Let me know if you'd like any refinements!
 
 
 
+<!-- by 许家伦 -->
 许家伦
 The explanation of area-picker.tsx
 Load and display the marker icon (image)
@@ -217,3 +222,135 @@ Initialize and render the Main application interface, which includes the Genshin
 Display the splash screen before the map data is loaded.
 Listen for the right-click menu and click events, and automatically close the pop-up UI (such as closing the selector and drawer when clicking on the map).
 Use valtio to obtain the responsive global state store.
+
+
+<!-- by 李鸿宇 -->
+李鸿宇
+Responsible for explaining store.ts and the main directory's index.html
+
+I.
+The index.html file serves as the entry point for the entire web application, with primary functionalities including:
+
+Defining HTML document structure: Providing the foundational framework for the application
+
+Initializing page metadata: Configuring viewport settings, character encoding, etc.
+
+Loading essential resources: Importing CSS stylesheets and JavaScript files
+
+Adding page styling: Defining global and custom styles
+
+Integrating analytics tools: Incorporating tracking code for Alibaba Cloud Log Service (Aplus)
+
+Detailed functional analysis of the file:
+
+Basic Document Structure
+
+Declares HTML5 document type
+
+Sets document language to Simplified Chinese
+
+Head Metadata (head section)
+
+Viewport configuration: Ensures page width matches device width for mobile responsiveness
+
+Character encoding: Set to UTF-8 for Chinese language support
+
+Page description: SEO optimization through content description
+
+Page title: Displays in browser tab
+
+Resource Loading
+
+CSS styling: Imports uno.css stylesheet
+
+Favicon: Configures standard and Apple-touch icons
+
+Main JavaScript: Imports index.js as the primary application logic entry point
+
+Alibaba Cloud Log Service (Aplus) Integration
+
+Asynchronously loads Aplus SDK
+
+Initializes logging queue
+
+Configures appKey for log tracking
+
+Custom Styling
+
+Scroll behavior: Disables overscroll effects
+
+Scrollbar: Hides Webkit browser scrollbars
+
+CSS variables: Defines shadow color variables
+
+Marker styling: Creates triangular indicators for map markers
+
+Page Body Structure
+
+Body styling:
+
+Disables text selection
+
+Applies sans-serif font family
+
+Sets text color
+
+Removes margins
+
+Main container:
+
+Uses fixed positioning
+
+Full-screen dimensions
+
+White background
+
+Configures z-index stacking
+
+Serves as application mount point
+
+II.
+Store.ts Component Analysis
+This store.ts file functions as a global state management module with key responsibilities:
+
+Global State Initialization:
+
+Creates a global state object 'store' using valtio's proxy
+
+Contains core state including CanvasKit instance, map data, and region information
+
+Core State Structure:
+
+canvaskit: CanvasKit WASM instance
+
+mapData: Binary map data
+
+mapInfo: Current map information
+
+areaItems: Region items organized by type and icon
+
+activeAreaItems: Collection of currently active items
+
+activeTopArea: Current top-level region
+
+activeSubArea: Current sub-region
+
+Primary Functional Methods:
+
+init(): Initialization function that loads CanvasKit and compressed map data
+
+activateArea(): Activates specified region and updates related state
+
+updateMapInfo(): Updates current map information
+
+updateAreaItems(): Refreshes region item data
+
+activateAreaItem()/inactivateAreaItem(): Toggles activation of specific region items
+
+Data Flow:
+
+Loads compressed map data from remote source during initialization
+
+Deserializes data using protobuf
+
+Organizes and manages map data through region activation mechanisms

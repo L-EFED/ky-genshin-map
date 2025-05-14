@@ -318,3 +318,28 @@ Usage: Used in the draw method of _MaskLayer to draw the semi-transparent black 
 
 ---
 
+许家伦
+标记点	Marker	地图上的一个图形或图标，用于表示特定位置或事件。
+激活标记点	Active Marker	当前被选中或处于交互状态的标记点。
+弹出信息窗	Info Window / Popup	当用户与标记点交互时显示的详细信息窗口。
+图层	Layer	地图上用于叠加不同类型图形的结构，如标记层（MarkerLayer）、DOM层（DomLayer）。
+响应式状态管理	Reactive State Management	使用如 Valtio 这样的库，让组件自动响应状态变化并更新 UI。
+预加载图像	Image Preloading	提前加载图像资源，避免首次显示时闪烁或延迟。
+条件渲染	Conditional Rendering	根据逻辑条件决定组件是否渲染，例如是否加载完成、是否激活等。
+状态快照	State Snapshot	valtio 中的当前状态的快照，用于在 React 中读取状态。
+按钮高亮	Button Highlight	通过不同样式（如背景色、边框）来突出显示当前选中的按钮状态。
+无标记区域	Borderless Area	特定区域不显示“完成”按钮（如某些特殊区域），通过名称判断。
+定位锚点	Anchor Point	控制标记图标在坐标上的对齐位置（如底部居中）。
+图层层级	Z-Index / Layer Order	控制不同图层或元素之间的前后堆叠顺序。
+中文术语	英文术语	专业解释
+应用根节点	Root Element	HTML 中用于挂载 React 应用的 DOM 元素，通常为 <div id="main">。
+React 渲染器	React Renderer	使用 createRoot().render() 将 React 组件渲染到 DOM。
+响应式状态快照	Reactive Snapshot	使用 valtio 的 useSnapshot 获取实时状态值，以驱动组件更新。
+启动画面	Splash Screen	在主内容加载前显示的图片或动画，用于提升用户体验。
+区域选择器	Area Picker	UI 组件，用于在地图上选择特定区域。
+抽屉组件	Drawer	页面侧边滑出的面板，用于显示附加信息或控制项。
+阻止默认右键菜单	Prevent Default Context Menu	阻止浏览器原生的右键菜单，通常用于自定义交互（如地图右键）。
+条件渲染	Conditional Rendering	只有在 mapData 加载完成后才渲染主界面内容。
+响应式 UI 控制	UI State Control	点击地图时关闭 UI 组件的交互逻辑。
+
+

@@ -198,3 +198,22 @@ These components collectively build a **professional-grade game map system** opt
 --- 
 
 Let me know if you'd like any refinements!
+
+
+
+许家伦
+The explanation of area-picker.tsx
+Load and display the marker icon (image)
+Render the currently activated marker (activeMarker) on the map through <MarkerLayer>.
+Display pop-up window (MarkerInfo)
+When there is an activation marker point, a pop-up window is displayed to show its title, content, image (if any), and may provide a "Completed/Unfinished" button.
+Support marking state switching (mark/unmark)
+Allow users to click the button to set the marker point as "Completed" or "Unfinished", and use valtio status management.
+Hide the button based on the condition
+For certain special areas (in the borderlessNames list) or marker points with a refresh time not being 0, the marker button is not displayed.
+
+The explanation of index.tsx
+Initialize and render the Main application interface, which includes the GenshinMap, AreaPicker, and Drawer.
+Display the splash screen before the map data is loaded.
+Listen for the right-click menu and click events, and automatically close the pop-up UI (such as closing the selector and drawer when clicking on the map).
+Use valtio to obtain the responsive global state store.

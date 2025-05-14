@@ -238,6 +238,8 @@ Definition: A method to draw a rectangle on the canvas.
 用途: 在_MaskLayer的draw方法中用于在地图上绘制半透明黑色矩形。
 Usage: Used in the draw method of _MaskLayer to draw the semi-transparent black rectangle over the entire map.
 
+
+
 覃旗广
 以下是针对这三段代码提取的专业术语词汇表（中英对照）：
 
@@ -318,6 +320,8 @@ Usage: Used in the draw method of _MaskLayer to draw the semi-transparent black 
 
 ---
 
+
+
 许家伦
 标记点	Marker	地图上的一个图形或图标，用于表示特定位置或事件。
 激活标记点	Active Marker	当前被选中或处于交互状态的标记点。
@@ -343,8 +347,8 @@ React 渲染器	React Renderer	使用 createRoot().render() 将 React 组件渲�
 响应式 UI 控制	UI State Control	点击地图时关闭 UI 组件的交互逻辑。
 
 
-李鸿宇
 
+李鸿宇
 一.
 1. HTML/DOM 相关
 DOCTYPE
